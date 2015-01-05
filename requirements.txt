@@ -1,0 +1,15 @@
+Flask
+Flask-Admin
+Flask-Login
+Flask-Migrate
+Flask-SQLAlchemy
+Flask-Script
+Flask-WTF
+Jinja2
+Mako
+MarkupSafe
+SQLAlchemy
+WTForms
+Werkzeug
+alembic
+itsdangerous

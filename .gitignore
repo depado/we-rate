@@ -1,0 +1,7 @@
+env
+database
+app/static/bower_components
+config.py
+manage.py
+*.py[cod]
+__pychache__/

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
+    <style type="text/css">
+    body {
+      background: url("{{ url_for('static', filename='img/body_bg.png')}}") repeat scroll 0% 0% transparent;
+    }
+    </style>
+</head>
+<body>
+  {% if form %}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <div class="well" style="margin-top: 50px; padding: 30px; padding-bottom: 10px;">
+          <form class="form-horizontal" method="post" action="">
+            <legend>Login</legend>
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <ul>
+                {% for message in messages %}
+                  <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+              {% endif %}
+            {% endwith %}
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+              {{ form.login(class="form-control", placeholder="Username") }}
+            </div>
+            <div class="form-group">
+              {{ form.password(class="form-control", placeholder="Password") }}
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary center-block">
+                <span>Login</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+  </div>
+  {% endif %}
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
+    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <style type="text/css">
+    body {
+      background: url("{{ url_for('static', filename='img/body_bg.png')}}") repeat scroll 0% 0% transparent;
+    }
+    </style>
+</head>
+<body>
+  <div class="navbar navbar-inverse">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">We Rate Movies</a>
+    </div>
+    <div class="navbar-collapse collapse navbar-inverse-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Link</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <form class="navbar-form navbar-left">
+          <input class="form-control col-lg-8" placeholder="Search" type="text">
+        </form>
+        {% if context.user %}
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ context.user }}</a>
+          <ul class="dropdown-menu">
+            <li class="dropdown-header">Administration</li>
+            <li><a href="{{ url_for('movie.index_view') }}">Films</a></li>
+            <li><a href="{{ url_for('category.index_view') }}">Catégories</a></li>
+            <li><a href="{{ url_for('review.index_view') }}">Critiques</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Statistiques</li>
+            <li><a href="#">Visiteurs</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Utilisateur</li>
+            <li><a href="{{ url_for('logout') }}">Déconnexion</a></li>
+          </ul>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">Panel heading</div>
+          <div class="panel-body">
+            Panel content
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
