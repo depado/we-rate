@@ -1,13 +1,14 @@
 from wtforms import validators
-from wtforms.fields import TextField, PasswordField, SubmitField
+from wtforms.fields import StringField, PasswordField, SubmitField
 
-from flask.ext.wtf import Form
+from flask_wtf import Form
 
 from app.models import User
 from app import db
 
+
 class LoginForm(Form):
-    login = TextField(validators=[validators.required()])
+    login = StringField(validators=[validators.required()])
     password = PasswordField(validators=[validators.required()])
     submit = SubmitField('submit')
 

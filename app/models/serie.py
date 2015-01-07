@@ -16,7 +16,7 @@ class Serie(db.Model):
     imdb_url = db.Column(db.String)
     allocine_url = db.Column(db.String)
     release_date = db.Column(db.DateTime)
-    pub_date = db.Column(db.DateTime)
+    view_date = db.Column(db.DateTime)
 
     categories = db.relationship('Category', secondary=serie_categories, backref=db.backref('series', lazy='dynamic'))
     reviews = db.relationship('Review', backref='series', lazy='dynamic')
@@ -38,8 +38,8 @@ class SerieView(AuthMixin, ModelView):
         'imdb_url',
         'allocine_url',
         'release_date',
+        'view_date',
         'reviews',
-        'pub_date'
     ]
 
     column_descriptions = {
@@ -47,13 +47,13 @@ class SerieView(AuthMixin, ModelView):
         'categories': "Catégorie(s) du film.",
         'cover_url': "Une url qui pointe vers une image de l'affiche.",
         'release_date': "La date de sortie du film.",
-        'pub_date': "Date de vue du film. Automatiquement remplie à ajourd'hui si laissée vide."
+        'view_date': "Date de vue du film. Automatiquement remplie à ajourd'hui si laissée vide."
     }
 
     def after_model_change(self, form, model, is_created):
         if is_created:
             if not model.pub_date:
-                model.pub_date = datetime.now()
+                model.view_date = datetime.now()
                 model.save()
 
     def __init__(self, session, **kwargs):
