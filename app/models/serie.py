@@ -5,11 +5,11 @@ from datetime import datetime
 from flask_admin.contrib.sqla import ModelView
 
 from app import db
-from .category import movie_categories
+from .category import serie_categories
 from .mixins import AuthMixin
 
 
-class Movie(db.Model):
+class Serie(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, unique=True)
     cover_url = db.Column(db.String)
@@ -18,8 +18,8 @@ class Movie(db.Model):
     release_date = db.Column(db.DateTime)
     pub_date = db.Column(db.DateTime)
 
-    categories = db.relationship('Category', secondary=movie_categories, backref=db.backref('movies', lazy='dynamic'))
-    reviews = db.relationship('Review', backref='movies', lazy='dynamic')
+    categories = db.relationship('Category', secondary=serie_categories, backref=db.backref('series', lazy='dynamic'))
+    reviews = db.relationship('Review', backref='series', lazy='dynamic')
 
     def __repr__(self):
         return self.title
@@ -29,7 +29,7 @@ class Movie(db.Model):
         db.session.commit()
 
 
-class MovieView(AuthMixin, ModelView):
+class SerieView(AuthMixin, ModelView):
     column_list = ('title', 'release_date')
     form_columns = [
         'title',
@@ -57,4 +57,4 @@ class MovieView(AuthMixin, ModelView):
                 model.save()
 
     def __init__(self, session, **kwargs):
-        super(MovieView, self).__init__(Movie, session, **kwargs)
+        super(SerieView, self).__init__(Serie, session, **kwargs)

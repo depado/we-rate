@@ -13,6 +13,7 @@ class Review(db.Model):
 
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     movie_id = db.Column(db.Integer, db.ForeignKey('movie.id'))
+    serie_id = db.Column(db.Integer, db.ForeignKey('serie.id'))
 
     def __repr__(self):
         return "{}".format(self.user)

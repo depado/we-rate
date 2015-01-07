@@ -13,10 +13,21 @@ class Category(db.Model):
     def __repr__(self):
         return self.name
 
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
 
-categories = db.Table('categories',
+
+movie_categories = db.Table(
+    'movie_categories',
     db.Column('category_id', db.Integer, db.ForeignKey('category.id')),
     db.Column('movie_id', db.Integer, db.ForeignKey('movie.id'))
+)
+
+serie_categories = db.Table(
+    'serie_categories',
+    db.Column('category_id', db.Integer, db.ForeignKey('category.id')),
+    db.Column('serie_id', db.Integer, db.ForeignKey('serie.id'))
 )
 
 
