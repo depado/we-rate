@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from flask.ext.login import current_user
+from flask_login import current_user
+
 
 class AuthMixin(object):
     def is_accessible(self):

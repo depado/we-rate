@@ -5,3 +5,4 @@ config.py
 manage.py
 *.py[cod]
 __pychache__/
+.idea/

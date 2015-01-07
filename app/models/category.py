@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from flask.ext.admin.contrib.sqla import ModelView
+from flask_admin.contrib.sqla import ModelView
 
 from app import db
 from app.models import AuthMixin
+
 
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)

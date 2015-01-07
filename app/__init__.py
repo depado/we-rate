@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask, redirect, url_for, request
-from flask.ext import admin, login
-from flask.ext.login import LoginManager
-from flask.ext.admin import Admin, expose, helpers
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask import Flask, redirect, url_for
+from flask_login import LoginManager, current_user
+from flask_admin import Admin, AdminIndexView, expose
+from flask_sqlalchemy import SQLAlchemy
 from werkzeug.contrib.fixers import ProxyFix
 
 from app.decorators import superuser_required
@@ -18,11 +17,12 @@ db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-class MyAdminIndexView(admin.AdminIndexView):
+
+class MyAdminIndexView(AdminIndexView):
     @expose('/')
     def index(self):
-        if login.current_user.is_authenticated():
-            if login.current_user.is_superuser():
+        if current_user.is_authenticated():
+            if current_user.is_superuser():
                 return super(MyAdminIndexView, self).index()
         return redirect(url_for('index'))
 
