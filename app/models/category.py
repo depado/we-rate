@@ -30,6 +30,12 @@ serie_categories = db.Table(
     db.Column('serie_id', db.Integer, db.ForeignKey('serie.id'))
 )
 
+book_categories = db.Table(
+    'book_categories',
+    db.Column('category_id', db.Integer, db.ForeignKey('category.id')),
+    db.Column('book_id', db.Integer, db.ForeignKey('book.id'))
+)
+
 
 class CategoryView(AuthMixin, ModelView):
 

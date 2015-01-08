@@ -6,3 +6,5 @@ manage.py
 *.py[cod]
 __pychache__/
 .idea/
+app/static/js/materialize.min.js
+app/static/css/materialize.min.css

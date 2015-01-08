@@ -18,6 +18,7 @@ class Review(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     movie_id = db.Column(db.Integer, db.ForeignKey('movie.id'))
     serie_id = db.Column(db.Integer, db.ForeignKey('serie.id'))
+    book_id = db.Column(db.Integer, db.ForeignKey('book.id'))
 
     def __repr__(self):
         return "{}".format(self.user)
@@ -30,14 +31,15 @@ class Review(db.Model):
 class ReviewView(AuthMixin, ModelView):
 
     column_list = [
-        'grade', 'user', 'movie', 'serie', 'date'
+        'grade', 'user', 'movie', 'serie', 'book', 'date'
     ]
 
     form_columns = [
         'grade',
         'critic',
         'movie',
-        'serie'
+        'serie',
+        'book',
     ]
 
     def after_model_change(self, form, model, is_created):

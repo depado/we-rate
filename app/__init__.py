@@ -28,11 +28,12 @@ class MyAdminIndexView(AdminIndexView):
 
 admin = Admin(app, 'We Rate Movies', index_view=MyAdminIndexView())
 
-from app.models import CategoryView, UserView, ReviewView, MovieView, SerieView
+from app.models import CategoryView, UserView, ReviewView, MovieView, SerieView, Book, BookView
 
 admin.add_view(CategoryView(db.session, endpoint='category'))
 admin.add_view(MovieView(db.session, endpoint='movie'))
 admin.add_view(SerieView(db.session, endpoint='serie'))
+admin.add_view(BookView(db.session, endpoint='book'))
 admin.add_view(ReviewView(db.session, endpoint='review'))
 
 from app import views, models
