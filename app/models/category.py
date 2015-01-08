@@ -36,12 +36,19 @@ book_categories = db.Table(
     db.Column('book_id', db.Integer, db.ForeignKey('book.id'))
 )
 
+game_categories = db.Table(
+    'game_categories',
+    db.Column('category_id', db.Integer, db.ForeignKey('category.id')),
+    db.Column('game_id', db.Integer, db.ForeignKey('game.id'))
+)
+
 
 class CategoryView(AuthMixin, ModelView):
 
     column_descriptions = {
         'series': "Les séries associées à cette catégorie.",
-        'movies': "Les films associées à cette catégorie."
+        'movies': "Les films associées à cette catégorie.",
+        'games': "Les jeux associés à cette catégorie",
     }
 
     def __init__(self, session, **kwargs):

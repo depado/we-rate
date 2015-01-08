@@ -1,13 +1,26 @@
+{% macro render_menu_item(classname, friendly_name, plural, icon) %}
+    <div class="ui dropdown item">
+        <i class="{{ icon }}"></i> {{ plural | capitalize }}
+        <div class="menu">
+            <div class="item"><i class="thumbs up icon"></i> Meilleurs Critiques</div>
+            <div class="item"><i class="thumbs down icon"></i> Pires Critiques</div>
+            <div class="item"><i class="wait icon"></i> Dernières Critiques</div>
+            <div class="ui left icon input">
+                <i class="search icon"></i>
+                <input name="search" placeholder="Chercher un {{ friendly_name }}..." type="text">
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
 <div class="ui menu">
-    <a class="active item" href="{{ url_for('index') }}">
+    <a class="item" href="{{ url_for('index') }}">
         <i class="home icon"></i> Home
     </a>
-    <a class="item" href="{{ url_for('movies') }}">
-        <i class="record icon"></i> Films
-    </a>
-    <a class="item">
-        <i class="record icon"></i> Series
-    </a>
+    {{ render_menu_item("movie", "film", "films", "record icon") }}
+    {{ render_menu_item("serie", "série", "séries", "record icon") }}
+    {{ render_menu_item("book", "livre", "livres", "book icon") }}
+    {{ render_menu_item("game", "jeu", "jeux", "game icon") }}
     <div class="right menu">
         <div class="borderless vertically fitted item">
             <div class="ui icon input">
@@ -23,9 +36,11 @@
                 <a class="item" href="{{ url_for('movie.index_view') }}"><i class="record icon"></i> Films</a>
                 <a class="item" href="{{ url_for('serie.index_view') }}"><i class="record icon"></i> Séries</a>
                 <a class="item" href="{{ url_for('book.index_view') }}"><i class="book icon"></i> Livres</a>
+                <a class="item" href="{{ url_for('game.index_view') }}"><i class="game icon"></i> Jeux</a>
                 <div class="divider"></div>
                 <a class="item" href="{{ url_for('review.index_view') }}"><i class="announcement icon"></i> Critiques</a>
                 <a class="item" href="{{ url_for('category.index_view') }}"><i class="grid layout icon"></i> Categories</a>
+                <a class="item" href="{{ url_for('platform.index_view') }}"><i class="database icon"></i> Plateformes</a>
                 <div class="divider"></div>
                 <a class="item" href="https://analytics.depado.eu" target="_blank"><i class="dashboard icon"></i> Statistiques</a>
                 <div class="divider"></div>
