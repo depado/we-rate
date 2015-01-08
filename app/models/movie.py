@@ -16,10 +16,10 @@ class Movie(db.Model):
     imdb_url = db.Column(db.String)
     allocine_url = db.Column(db.String)
     release_date = db.Column(db.DateTime)
-    pub_date = db.Column(db.DateTime)
+    view_date = db.Column(db.DateTime)
 
     categories = db.relationship('Category', secondary=movie_categories, backref=db.backref('movies', lazy='dynamic'))
-    reviews = db.relationship('Review', backref='movies', lazy='dynamic')
+    reviews = db.relationship('Review', backref='movie', lazy='dynamic')
 
     def __repr__(self):
         return self.title
@@ -30,7 +30,7 @@ class Movie(db.Model):
 
 
 class MovieView(AuthMixin, ModelView):
-    column_list = ('title', 'release_date')
+    column_list = ('title', 'release_date', 'view_date')
     form_columns = [
         'title',
         'categories',
@@ -38,22 +38,23 @@ class MovieView(AuthMixin, ModelView):
         'imdb_url',
         'allocine_url',
         'release_date',
-        'reviews',
-        'pub_date'
+        'view_date'
     ]
 
     column_descriptions = {
         'title': "Titre du film.",
         'categories': "Catégorie(s) du film.",
         'cover_url': "Une url qui pointe vers une image de l'affiche.",
+        'imdb_url': "Url qui pointe vers la fiche IMDB du film.",
+        'allocine_url': "Url qui pointe vers la fiche Allocine du film.",
         'release_date': "La date de sortie du film.",
-        'pub_date': "Date de vue du film. Automatiquement remplie à ajourd'hui si laissée vide."
+        'view_date': "Date de vue du film. Automatiquement remplie à ajourd'hui si laissée vide."
     }
 
     def after_model_change(self, form, model, is_created):
         if is_created:
-            if not model.pub_date:
-                model.pub_date = datetime.now()
+            if not model.view_date:
+                model.view_date = datetime.now()
                 model.save()
 
     def __init__(self, session, **kwargs):

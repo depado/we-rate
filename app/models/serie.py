@@ -19,7 +19,7 @@ class Serie(db.Model):
     view_date = db.Column(db.DateTime)
 
     categories = db.relationship('Category', secondary=serie_categories, backref=db.backref('series', lazy='dynamic'))
-    reviews = db.relationship('Review', backref='series', lazy='dynamic')
+    reviews = db.relationship('Review', backref='serie', lazy='dynamic')
 
     def __repr__(self):
         return self.title
@@ -30,7 +30,7 @@ class Serie(db.Model):
 
 
 class SerieView(AuthMixin, ModelView):
-    column_list = ('title', 'release_date')
+    column_list = ('title', 'release_date', 'view_date')
     form_columns = [
         'title',
         'categories',
@@ -52,7 +52,7 @@ class SerieView(AuthMixin, ModelView):
 
     def after_model_change(self, form, model, is_created):
         if is_created:
-            if not model.pub_date:
+            if not model.view_date:
                 model.view_date = datetime.now()
                 model.save()
 

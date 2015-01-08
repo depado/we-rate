@@ -32,6 +32,11 @@ serie_categories = db.Table(
 
 
 class CategoryView(AuthMixin, ModelView):
-    
+
+    column_descriptions = {
+        'series': "Les séries associées à cette catégorie.",
+        'movies': "Les films associées à cette catégorie."
+    }
+
     def __init__(self, session, **kwargs):
         super(CategoryView, self).__init__(Category, session, **kwargs)
