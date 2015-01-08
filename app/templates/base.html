@@ -3,9 +3,8 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
-    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/semantic.min.css') }}">
     <style type="text/css">
         body {
             background: url("{{ url_for('static', filename='img/body_bg.png')}}") repeat scroll 0% 0% transparent;
@@ -17,6 +16,16 @@
     {% block menu %}{% include "menu.html" %}{% endblock %}
     {% block content %}{% endblock %}
 
+    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/semantic.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.dropdown').dropdown({
+                transition: 'drop',
+                on: 'hover',
+            });
+        });
+    </script>
     {% block extra_js_end %}{% endblock %}
     {% include "piwik.html" %}
 </body>

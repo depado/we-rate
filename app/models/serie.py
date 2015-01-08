@@ -7,6 +7,7 @@ from flask_admin.contrib.sqla import ModelView
 from app import db
 from .category import serie_categories
 from .mixins import AuthMixin
+from .review import Review
 
 
 class Serie(db.Model):
@@ -27,6 +28,10 @@ class Serie(db.Model):
     def save(self):
         db.session.add(self)
         db.session.commit()
+
+    @staticmethod
+    def last_reviews(limit, by_date=True):
+        return Review.query.order_by(Review.date).filter(Review.serie_id.isnot(None)).limit(limit).all()
 
 
 class SerieView(AuthMixin, ModelView):

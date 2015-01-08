@@ -1,37 +1,36 @@
-<div class="navbar navbar-inverse">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">We Rate Movies</a>
-    </div>
-    <div class="navbar-collapse collapse navbar-inverse-collapse">
-        <ul class="nav navbar-nav">
-            <li><a href="#">Link</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <form class="navbar-form navbar-left">
-                <input class="form-control col-lg-8" placeholder="Search" type="text">
-            </form>
-            {% if context.user %}
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ context.user }}</a>
-                <ul class="dropdown-menu">
-                    <li class="dropdown-header">Administration</li>
-                    <li><a href="{{ url_for('movie.index_view') }}">Films</a></li>
-                    <li><a href="{{ url_for('category.index_view') }}">Catégories</a></li>
-                    <li><a href="{{ url_for('review.index_view') }}">Critiques</a></li>
-                    <li class="divider"></li>
-                    <li class="dropdown-header">Statistiques</li>
-                    <li><a href="#">Visiteurs</a></li>
-                    <li class="divider"></li>
-                    <li class="dropdown-header">Utilisateur</li>
-                    <li><a href="{{ url_for('logout') }}">Déconnexion</a></li>
-                </ul>
-            </li>
-            {% endif %}
-        </ul>
+<div class="ui menu">
+    <a class="active item">
+        <i class="home icon"></i> Home
+    </a>
+    <a class="item">
+        <i class="mail icon"></i> Messages
+    </a>
+    <a class="item">
+        <i class="user icon"></i> Friends
+    </a>
+    <div class="right menu">
+        <div class="borderless vertically fitted item">
+            <div class="ui icon input">
+                <input type="text" placeholder="Search...">
+                <i class="search link icon"></i>
+            </div>
+        </div>
+        {% if context.user %}
+        <div class="ui dropdown item">
+            <i class="user icon"></i> {{ context.user }}
+            <div class="menu">
+                <div class="header">Administration</div>
+                <a class="item" href="{{ url_for('movie.index_view') }}"><i class="record icon"></i> Films</a>
+                <a class="item" href="{{ url_for('serie.index_view') }}"><i class="record icon"></i> Séries</a>
+                <a class="item" href="{{ url_for('review.index_view') }}"><i class="announcement icon"></i> Critiques</a>
+                <a class="item" href="{{ url_for('category.index_view') }}"><i class="grid layout icon"></i> Categories</a>
+                <div class="divider"></div>
+                <div class="header">Utilisateur</div>
+                <div class="item"><a href="{{ url_for('logout') }}">Déconnexion</a></div>
+            </div>
+        </div>
+        {% else %}
+        <div class="item"><a href="{{ url_for('login') }}"> Connexion</a></div>
+        {% endif %}
     </div>
 </div>

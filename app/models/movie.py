@@ -7,6 +7,7 @@ from flask_admin.contrib.sqla import ModelView
 from app import db
 from .category import movie_categories
 from .mixins import AuthMixin
+from .review import Review
 
 
 class Movie(db.Model):
@@ -22,11 +23,15 @@ class Movie(db.Model):
     reviews = db.relationship('Review', backref='movie', lazy='dynamic')
 
     def __repr__(self):
-        return self.title
+        return "<Movie Object> {id}, {title}".format(id=self.id, title=self.title)
 
     def save(self):
         db.session.add(self)
         db.session.commit()
+
+    @staticmethod
+    def last_reviews(limit):
+        return Review.query.order_by(Review.date).filter(Review.movie_id.isnot(None)).limit(limit).all()
 
 
 class MovieView(AuthMixin, ModelView):

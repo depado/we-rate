@@ -29,6 +29,10 @@ class Review(db.Model):
 
 class ReviewView(AuthMixin, ModelView):
 
+    column_list = [
+        'grade', 'user', 'movie', 'serie', 'date'
+    ]
+
     form_columns = [
         'grade',
         'critic',
