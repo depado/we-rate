@@ -1,12 +1,12 @@
 <div class="ui menu">
-    <a class="active item">
+    <a class="active item" href="{{ url_for('index') }}">
         <i class="home icon"></i> Home
     </a>
-    <a class="item">
-        <i class="mail icon"></i> Messages
+    <a class="item" href="{{ url_for('movies') }}">
+        <i class="record icon"></i> Films
     </a>
     <a class="item">
-        <i class="user icon"></i> Friends
+        <i class="record icon"></i> Series
     </a>
     <div class="right menu">
         <div class="borderless vertically fitted item">
@@ -27,8 +27,10 @@
                 <a class="item" href="{{ url_for('review.index_view') }}"><i class="announcement icon"></i> Critiques</a>
                 <a class="item" href="{{ url_for('category.index_view') }}"><i class="grid layout icon"></i> Categories</a>
                 <div class="divider"></div>
+                <a class="item" href="https://analytics.depado.eu" target="_blank"><i class="dashboard icon"></i> Statistiques</a>
+                <div class="divider"></div>
                 <div class="header">Utilisateur</div>
-                <div class="item"><a href="{{ url_for('logout') }}">Déconnexion</a></div>
+                <a class="item" href="{{ url_for('logout') }}"><i class="power icon"></i> Déconnexion</a>
             </div>
         </div>
         {% else %}

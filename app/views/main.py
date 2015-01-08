@@ -4,7 +4,7 @@ from flask import render_template, redirect, url_for, request, flash
 from flask_login import login_user, logout_user, current_user
 
 from app.forms import LoginForm
-from app.models import User, Review, Movie, Serie
+from app.models import User, Movie, Serie, Book
 from app import app, db
 
 @app.route('/', methods=['GET', 'POST'])
@@ -13,8 +13,9 @@ def index():
     if current_user.is_authenticated():
         context.update(user=current_user.login)
     context.update(
-        last_movie_reviews=Movie.last_reviews(10),
-        last_serie_reviews=Serie.last_reviews(10),
+        last_movie_reviews=Movie.last_reviews(5),
+        last_serie_reviews=Serie.last_reviews(5),
+        last_book_reviews=Book.last_reviews(5)
     )
     return render_template('index.html', context=context)
 

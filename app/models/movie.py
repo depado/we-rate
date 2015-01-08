@@ -33,6 +33,10 @@ class Movie(db.Model):
     def last_reviews(limit):
         return Review.query.order_by(Review.date).filter(Review.movie_id.isnot(None)).limit(limit).all()
 
+    @staticmethod
+    def all_ordered():
+        return Review.query.order_by(Review.date).filter(Review.movie_id.isnot(None)).all()
+
 
 class MovieView(AuthMixin, ModelView):
     column_list = ('title', 'release_date', 'view_date')
