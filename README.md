@@ -29,8 +29,9 @@ This website will be created using the Flask micro-framework. It will need some 
 ### Excluded files and such ###
 Of course as this project may be in production one day, the files containing the sensitive data will be excluded from the project.     
 For example the `config.py` file and `manage.py` contains sensitive informations such as the Private Key used for sessions and CSRF Protection.    
-So if you want to use that code you'll have to create your own files. To help you out I created a python script that can be used to create a sample project in one command line. You can find this project [here][1] and a little demonstration [here][2].
+So if you want to use that code you'll have to create your own files. To help you out I created a python script that can be used to create a sample project in one command line. You can find this project [here][1] and a little demonstration below:
+
+[![asciicast](https://asciinema.org/a/10051.png)](https://asciinema.org/a/10051)
 
 
   [1]: https://github.com/Depado/flask-skeleton
-  [2]: https://asciinema.org/a/10051
